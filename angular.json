@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "projects": {
+    "workflow-designer": {
+      "projectType": "application",
+      "root": "apps/workflow-designer",
+      "sourceRoot": "apps/workflow-designer/src",
+      "prefix": "workflow-designer",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/workflow-designer",
+            "index": "apps/workflow-designer/src/index.html",
+            "main": "apps/workflow-designer/src/main.ts",
+            "polyfills": "apps/workflow-designer/src/polyfills.ts",
+            "tsConfig": "apps/workflow-designer/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/workflow-designer/src/favicon.ico",
+              "apps/workflow-designer/src/assets"
+            ],
+            "styles": ["apps/workflow-designer/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/workflow-designer/src/environments/environment.ts",
+                  "with": "apps/workflow-designer/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "workflow-designer:build:production"
+            },
+            "development": {
+              "browserTarget": "workflow-designer:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "workflow-designer:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/workflow-designer/src/**/*.ts",
+              "apps/workflow-designer/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/workflow-designer"],
+          "options": {
+            "jestConfig": "apps/workflow-designer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "workflow-designer-e2e": {
+      "root": "apps/workflow-designer-e2e",
+      "sourceRoot": "apps/workflow-designer-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/workflow-designer-e2e/cypress.json",
+            "devServerTarget": "workflow-designer:serve:development",
+            "tsConfig": "apps/workflow-designer-e2e/tsconfig.json"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "workflow-designer:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/workflow-designer-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["workflow-designer"]
+    }
+  }
+}
