@@ -1,16 +1,6 @@
 <div class="container">
-  <div class="top-navigation">
-    <div>Workflow Designer</div>
-    <div>
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-        <mat-button-toggle value="bold">Bold</mat-button-toggle>
-        <mat-button-toggle value="italic">Italic</mat-button-toggle>
-        <mat-button-toggle value="underline">Underline</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-    <div></div>
-  </div>
-  <div class="left-navigation"></div>
-  <canvas class="canvas"></canvas>
-  <div class="properties-pane"></div>
+  <wd-header class="top-navigation"></wd-header>
+  <wd-left-navigation class="left-navigation"></wd-left-navigation>
+  <wd-canvas class="canvas"></wd-canvas>
+  <wd-properties-pane class="properties-pane"></wd-properties-pane>
 </div>

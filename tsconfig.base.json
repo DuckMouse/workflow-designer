@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@workflow-designer/material": ["libs/material/src/index.ts"]
+      "@workflow-designer/material": ["libs/material/src/index.ts"],
+      "@workflow-designer/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

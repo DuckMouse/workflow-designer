@@ -5,7 +5,7 @@
       "projectType": "library",
       "root": "libs/material",
       "sourceRoot": "libs/material/src",
-      "prefix": "workflow-designer",
+      "prefix": "wd",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -27,11 +27,34 @@
       },
       "tags": []
     },
+    "ui": {
+      "projectType": "library",
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "prefix": "wd",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+          }
+        }
+      },
+      "tags": []
+    },
     "workflow-designer": {
       "projectType": "application",
       "root": "apps/workflow-designer",
       "sourceRoot": "apps/workflow-designer/src",
-      "prefix": "workflow-designer",
+      "prefix": "wd",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
