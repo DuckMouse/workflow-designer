@@ -1,6 +1,32 @@
 {
   "version": 1,
   "projects": {
+    "material": {
+      "projectType": "library",
+      "root": "libs/material",
+      "sourceRoot": "libs/material/src",
+      "prefix": "workflow-designer",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/material"],
+          "options": {
+            "jestConfig": "libs/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/material/src/**/*.ts",
+              "libs/material/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "workflow-designer": {
       "projectType": "application",
       "root": "apps/workflow-designer",
@@ -21,7 +47,10 @@
               "apps/workflow-designer/src/favicon.ico",
               "apps/workflow-designer/src/assets"
             ],
-            "styles": ["apps/workflow-designer/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "apps/workflow-designer/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
